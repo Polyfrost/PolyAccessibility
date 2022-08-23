@@ -1,0 +1,17 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "cc.polyfrost.polyaccessibility.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "DurabilityInject"
+  ],
+  "client": [
+    "AccessorHandledScreen",
+    "AccessorSlot",
+    "NarratorManagerInject"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

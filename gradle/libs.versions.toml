@@ -1,0 +1,19 @@
+[versions]
+minecraft = "1.19.2"
+yarn = "1.19.2+build.8"
+fabric = "0.14.9"
+fabricApi = "0.58.6+1.19.2"
+modmenu = "4.0.6"
+fabric-loom = "0.12.+"
+loom-quiltflower = "1.7.+"
+
+[libraries]
+minecraft = { module = "com.mojang:minecraft", version.ref = "minecraft" }
+yarn = { module = "net.fabricmc:yarn", version.ref = "yarn" }
+fabric = { module = "net.fabricmc:fabric-loader", version.ref = "fabric" }
+fabricApi = { module = "net.fabricmc.fabric-api:fabric-api", version.ref = "fabricApi" }
+modmenu = { module = "com.terraformersmc:modmenu", version.ref = "modmenu" }
+
+[plugins]
+fabric-loom = { id = "fabric-loom", version.ref = "fabric-loom" }
+loom-quiltflower = { id = "io.github.juuxel.loom-quiltflower", version.ref = "loom-quiltflower" }
