@@ -27,7 +27,7 @@ public class DurabilityInject {
             if (itemStack.getItem().isDamageable()) {
                 int totalDurability = itemStack.getItem().getMaxDamage();
                 int currentRemainingDurability = totalDurability - itemStack.getDamage();
-                list.add(1, Text.of((I18n.translate("narrate.apextended.durability", currentRemainingDurability, totalDurability).formatted(Formatting.GREEN))));
+                list.add(1, Text.of((I18n.translate("", currentRemainingDurability, totalDurability).formatted(Formatting.GREEN))));
             }
         }
     }

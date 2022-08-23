@@ -21,11 +21,6 @@ repositories {
     maven("https://server.bbkr.space/artifactory/libs-release")
 }
 
-val minecraftVersion: String by project
-val fabricLoaderVersion: String by project
-val fabricApiVersion: String by project
-val modMenuVersion: String by project
-
 dependencies {
     minecraft(libs.minecraft)
     mappings(libs.yarn)
@@ -33,6 +28,10 @@ dependencies {
     modImplementation(libs.fabric)
     modImplementation(libs.fabricApi)
     modImplementation(libs.modmenu)
+
+    modApi(libs.cloth.config) {
+        exclude("net.fabricmc.fabric-api")
+    }
 }
 
 tasks {
@@ -62,11 +61,11 @@ tasks {
     }
 
     remapJar {
-        archiveClassifier.set("fabric-$minecraftVersion")
+        archiveClassifier.set("fabric-1.19.2")
     }
 
     remapSourcesJar {
-        archiveClassifier.set("fabric-$minecraftVersion-sources")
+        archiveClassifier.set("fabric-1.19.2-sources")
     }
 }
 
