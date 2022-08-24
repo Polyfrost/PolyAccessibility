@@ -4,11 +4,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 import cc.polyfrost.polyaccessibility.client.ClientHandler;
+import cc.polyfrost.polyaccessibility.config.PAConfig;
 import cc.polyfrost.polyaccessibility.keyboard.KeyboardController;
 import cc.polyfrost.polyaccessibility.mixin.AccessorHandledScreen;
 import cc.polyfrost.polyaccessibility.narrator.PolyNarrator;
 import cc.polyfrost.polyaccessibility.utils.PolyThread;
 
+import me.shedaniel.autoconfig.AutoConfig;
+import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.minecraft.block.Block;
@@ -21,6 +24,7 @@ import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
 
 public class PolyAccessibility implements ModInitializer {
+    public static PAConfig config;
     public static PolyAccessibility instance;
     public static PolyNarrator narrator;
     public static KeyboardController keyboardController;
@@ -49,9 +53,11 @@ public class PolyAccessibility implements ModInitializer {
 
         clientHandler = new ClientHandler();
 
+        AutoConfig.register(PAConfig.class, GsonConfigSerializer::new);
+        config = AutoConfig.getConfigHolder(PAConfig.class).getConfig();
+
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
-            // TODO: implement config system
-            if (true) {
+            if (config.keyboardInventoryControlToggle) {
                 isDPressed = (InputUtil.isKeyPressed(client.getWindow().getHandle(),
                         InputUtil.fromTranslationKey("key.keyboard.d").getCode()));
                 isAPressed = (InputUtil.isKeyPressed(client.getWindow().getHandle(),
@@ -105,15 +111,14 @@ public class PolyAccessibility implements ModInitializer {
 
                             String output = "";
 
-                            // TODO: implement config system
-                            if (true) {
+                            if (config.readBlocksToggle) {
                                 output += block.getName().getString();
                             }
-                            // TODO: implement config system
-                            if (blockState.toString().contains("sign") && true) {
+                            if (blockState.toString().contains("sign") && config.readSignContentsToggle) {
                                 try {
                                     SignBlockEntity signBlockEntity = (SignBlockEntity) client.world.getBlockEntity(blockPos);
                                     output += " says: ";
+                                    assert signBlockEntity != null;
                                     output += "1: " + signBlockEntity.getTextOnRow(0, false).getString() + ", ";
                                     output += "2: " + signBlockEntity.getTextOnRow(1, false).getString() + ", ";
                                     output += "3: " + signBlockEntity.getTextOnRow(2, false).getString() + ", ";

@@ -27,8 +27,8 @@ dependencies {
 
     modImplementation(libs.fabric)
     modImplementation(libs.fabricApi)
-    modImplementation(libs.modmenu)
 
+    modApi(libs.modmenu)
     modApi(libs.cloth.config) {
         exclude("net.fabricmc.fabric-api")
     }

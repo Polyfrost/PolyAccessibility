@@ -4,12 +4,15 @@
   "package": "cc.polyfrost.polyaccessibility.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "DurabilityInject"
+    "DurabilityInject",
+    "ItemStackTooltipInject"
   ],
   "client": [
     "AccessorHandledScreen",
     "AccessorSlot",
-    "NarratorManagerInject"
+    "ActionbarInject",
+    "NarratorManagerInject",
+    "RenderTooltipInject"
   ],
   "injectors": {
     "defaultRequire": 1
