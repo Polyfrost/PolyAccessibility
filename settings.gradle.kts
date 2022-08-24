@@ -3,17 +3,30 @@ pluginManagement {
         gradlePluginPortal()
         mavenCentral()
         maven("https://repo.polyfrost.cc/releases")
-        maven("https://maven.fabricmc.net")
-        maven("https://maven.quiltmc.org/repository/release")
-        maven("https://repo.essential.gg/repository/maven-public")
+        maven("https://maven.architectury.dev/")
     }
     plugins {
         val egtVersion = "0.1.12"
-        /*
         id("gg.essential.multi-version.root") version egtVersion
-        id("gg.essential.multi-version.api-validation") version egtVersion
-         */
+    }
+    resolutionStrategy {
+        eachPlugin {
+            if (requested.id.id == "io.github.juuxel.loom-quiltflower-mini") {
+                useModule("com.github.wyvest:loom-quiltflower-mini:${requested.version}")
+            }
+        }
     }
 }
 
 rootProject.name = "PolyAccessibility"
+rootProject.buildFileName = "root.gradle.kts"
+
+listOf(
+    "1.19.1-fabric"
+).forEach { version ->
+    include(":$version")
+    project(":$version").apply {
+        projectDir = file("versions/$version")
+        buildFileName = "../../build.gradle.kts"
+    }
+}

@@ -7,7 +7,10 @@
 
 plugins {
     java
-    alias(libs.plugins.fabric.loom)
+    id("gg.essential.multi-version")
+    id("gg.essential.defaults.repo")
+    id("gg.essential.defaults.java")
+    id("gg.essential.defaults.loom")
     alias(libs.plugins.loom.quiltflower)
 }
 
@@ -22,10 +25,6 @@ repositories {
 }
 
 dependencies {
-    minecraft(libs.minecraft)
-    mappings(libs.yarn)
-
-    modImplementation(libs.fabric)
     modImplementation(libs.fabricApi)
 
     modApi(libs.modmenu)
@@ -61,11 +60,11 @@ tasks {
     }
 
     remapJar {
-        archiveClassifier.set("fabric-1.19.2")
+        //archiveClassifier.set("fabric-1.19.2")
     }
 
     remapSourcesJar {
-        archiveClassifier.set("fabric-1.19.2-sources")
+        //archiveClassifier.set("fabric-1.19.2-sources")
     }
 }
 

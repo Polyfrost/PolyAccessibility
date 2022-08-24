@@ -112,11 +112,7 @@ public class KeyboardController {
             } else if (DOWN_KEY.matchesKey(keyCode, scanCode)) {
                 focusSlotAt(FocusDirection.DOWN);
             } else if (GROUP_KEY.matchesKey(keyCode, scanCode)) {
-                if (modifiers == GLFW.GLFW_MOD_SHIFT) {
-                    focusGroupVertically(false);
-                } else {
-                    focusGroupVertically(true);
-                }
+                focusGroupVertically(modifiers != GLFW.GLFW_MOD_SHIFT);
                 return ActionResult.SUCCESS;
             } else if (HOME_KEY.matchesKey(keyCode, scanCode)) {
                 if (modifiers == GLFW.GLFW_MOD_SHIFT) {
@@ -193,20 +189,20 @@ public class KeyboardController {
     private static void focusSlot(Slot slot) {
         currentSlot = slot;
         moveToSlot(currentSlot);
-        String message = "";
+        StringBuilder message = new StringBuilder();
         if (currentGroup.getSlotName(currentSlot).length() > 0) {
-            message += currentGroup.getSlotName(currentSlot) + ". ";
+            message.append(currentGroup.getSlotName(currentSlot)).append(". ");
         }
         if (!currentSlot.hasStack()) {
-            message += " Empty";
+            message.append(" Empty");
         } else {
             List<Text> lines = currentSlot.getStack().getTooltip(client.player, TooltipContext.Default.NORMAL);
             for (Text line : lines) {
-                message += line.getString() + ", ";
+                message.append(line.getString()).append(", ");
             }
         }
         if (message != null && message.length() > 0) {
-            PolyNarrator.narrate(message);
+            PolyNarrator.narrate(message.toString());
         }
     }
 
