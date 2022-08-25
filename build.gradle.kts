@@ -32,6 +32,10 @@ dependencies {
     modApi(libs.cloth.config) {
         exclude("net.fabricmc.fabric-api")
     }
+
+
+    modApi(libs.cloth.api)
+    include(libs.cloth.api)
 }
 
 tasks {

@@ -9,6 +9,8 @@ import cc.polyfrost.polyaccessibility.client.ClientHandler;
 import cc.polyfrost.polyaccessibility.narrator.PolyNarrator;
 import cc.polyfrost.polyaccessibility.mixin.AccessorHandledScreen;
 
+import me.shedaniel.cloth.api.client.events.v0.ClothClientHooks;
+import me.shedaniel.cloth.api.client.events.v0.ScreenHooks;
 import org.lwjgl.glfw.GLFW;
 
 import blue.endless.jankson.annotation.Nullable;

@@ -7,6 +7,7 @@ modmenu = "4.0.6"
 cloth-config = "8.0.75"
 fabric-loom = "0.12.+"
 loom-quiltflower = "1.7.+"
+cloth-api = "4.0.65"
 
 [libraries]
 minecraft = { module = "com.mojang:minecraft", version.ref = "minecraft" }
@@ -15,6 +16,7 @@ fabric = { module = "net.fabricmc:fabric-loader", version.ref = "fabric" }
 fabricApi = { module = "net.fabricmc.fabric-api:fabric-api", version.ref = "fabricApi" }
 modmenu = { module = "com.terraformersmc:modmenu", version.ref = "modmenu" }
 cloth-config = { module = "me.shedaniel.cloth:cloth-config-fabric", version.ref = "cloth-config"}
+cloth-api = { module = "me.shedaniel.cloth.api:cloth-client-events-v0", version.ref = "cloth-api" }
 
 [plugins]
 fabric-loom = { id = "fabric-loom", version.ref = "fabric-loom" }
